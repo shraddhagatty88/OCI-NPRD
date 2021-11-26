@@ -1,0 +1,16 @@
+title: "OCI Template NPRD"
+description: "OCI NPRD"
+stackDescription: "OCI Template for NPRD"
+schemaVersion: 1.1.0
+version: "20201126"
+locale: "en"
+
+variableGroups:
+- title: "General Configuration"
+  visible: false
+  variables:
+  - tenancy_ocid
+  - user_ocid
+  - fingerprint
+  - private_key_path
+  - region
