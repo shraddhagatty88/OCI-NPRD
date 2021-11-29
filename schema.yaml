@@ -14,3 +14,111 @@ variableGroups:
   - fingerprint
   - private_key_path
   - region
+
+- title: "Required Configuration"
+  visible: true  
+  variables:
+  - compartment_ocid
+  - availablity_domain_name 
+  - show_advanced 
+
+- title: "Compute Optional Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - Shape
+  - shape_ocpus
+  - shape_mem
+  - availablity_domain_name
+  - compartment_ocid
+  - instance_shape
+
+variables:
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible: true
+    default: false
+
+  # General Configuration
+  tenancy_ocid:
+    title: "Tenancy ID"
+    description: "The Oracle Cloud Identifier (OCID) for your tenancy"
+    type: string
+    required: true
+    visibile: false
+
+  region:
+    title: "Region"
+    description: "Choose Region where you deploy your Webserver"
+    type: oci:identity:region:name
+    required: true
+    visibile: true
+
+  compartment_ocid:
+    title: "Compartment OCID"
+    description: "Choose Comparment where you deploy your Webserver"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+  availablity_domain_name:
+    type: enum
+    required: true
+    visibile: true
+    title: "Availability Domain to be chosen"
+    description: "Choose Availability Domain where your application will be deployed."
+    default: "3"
+    enum:
+      - "1"
+      - "2"
+      - "3"
+
+  instance_shape:
+    type: oci:core:instanceshape:name
+    title: "Instance Shape"
+    description: "Choose a shape for your instance"
+    default: "VM.Standard.E2.1"
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+
+  shape_ocpus:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 2
+    title: " Shape OCPUs"
+    description: "Choose number of OCPUs for Shape."
+
+  shape_mem:
+    type: number
+    required: false
+    minimum: 1
+    maximum: 128
+    multipleOf: 1
+    default: 16
+    title: " Shape Memory (GB)"
+    description: "Choose number GB for Shape Memory."
+   
+
+outputs:
+
+  generated_ssh_private_key:
+    title: "Generated SSH Private Key"
+    displayText: "Generated SSH Private Key"
+    type: string
+    visible: true
+  
+  FoggyKitchenWebserver1PublicIP:
+    title: "Webserver Public IP"
+    displayText: "Webserver Public IP"
+    type: copyableString
+    visible: true
+
+

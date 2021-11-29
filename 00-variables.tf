@@ -126,3 +126,16 @@ variable "backup_policy" {
   
   default = "silver"
 }
+
+variable instance_shape {
+    default = "VM.Standard.E2.1"
+}
+
+variable "compartment_ocid" {
+  
+}
+
+variable "availablity_domain_name" {
+  
+  default = "3"
+}
