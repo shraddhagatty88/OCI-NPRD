@@ -13,12 +13,12 @@ module "instance_test_app" {
   availability_domain = var.availablity_domain_name
   fault_domain        = 1
   compartment_id      = var.compartment_ocid
-  subnet_id           = data.terraform_remote_state.common_services.outputs.subnet_app_nonprod_id
+  subnet_id           = var.subnet_ocid
   network_sec_groups  = [data.terraform_remote_state.common_services.outputs.security_group_nonprod_app_id
                         ,data.terraform_remote_state.common_services.outputs.security_group_nonprod_common_id
                     #    ,data.terraform_remote_state.common_services.outputs.security_group_v1_vpn_id
                     ]
-  ssh_authorized_keys = file(var.ssh_key_nonprod_pub)
+  ssh_authorized_keys = var.ssh_key_nonprod
   source_id           = data.oci_core_images.custom_image_v1-oel7-golden.images[0].id
   boot_volume_size_in_gbs = 100
   assign_public_ip    = false

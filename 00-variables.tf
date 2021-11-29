@@ -139,3 +139,12 @@ variable "availablity_domain_name" {
   
   default = "3"
 }
+
+variable "subnet_ocid" {
+  
+  
+}
+
+variable "ssh_key_nonprod" {
+  
+}
