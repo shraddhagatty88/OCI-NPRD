@@ -120,6 +120,9 @@ variables:
     type: oci:core:nsg:id
     required: true
     visible: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
+
 
   # Compute Configuration
 
