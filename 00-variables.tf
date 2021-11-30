@@ -146,3 +146,7 @@ variable "subnet_ocid" {
 variable "ssh_key_nonprod" {
   
 }
+
+variable "nsg" {
+  
+}

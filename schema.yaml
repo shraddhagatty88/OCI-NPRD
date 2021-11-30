@@ -38,6 +38,7 @@ variableGroups:
   - instance_shape
   - subnet_ocid
   - ssh_key_nonprod
+  - nsg
 
 
 - title: "Database Optional Configuration"
@@ -112,6 +113,13 @@ variables:
     type: string
     required: true
     visibile: false
+  
+  nsg:
+    title: "Network security groups"
+    description: "Network security groups for the instance"
+    type: oci:core:nsg:id
+    required: true
+    visible: true
 
   # Compute Configuration
 
