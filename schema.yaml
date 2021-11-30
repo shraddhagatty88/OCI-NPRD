@@ -140,12 +140,11 @@ variables:
     
   subnet_ocid:
     title: "Subnet OCID"
-    description: "Choose Comparment where you deploy your Webserver"
+    description: "Choose subnet where you deploy your instance"
     type: oci:core:subnet:id
     required: true
     visibile: true
-    dependsOn:
-      compartmentId: ${compartment_ocid}
+    
 
   ssh_key_nonprod:
     title: SSH Public Key
