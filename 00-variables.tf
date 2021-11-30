@@ -12,6 +12,9 @@ variable customer_label{
     default = ""
 }
 
+variable "subnet_compartment" {
+  
+}
 
 locals {
   tags_common = {
