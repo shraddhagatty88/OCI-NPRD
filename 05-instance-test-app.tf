@@ -36,7 +36,7 @@ module "instance_test_app_volume_VG01" {
   volume_display_name = "${var.customer_label}_test_app_VG01"
   availability_domain = var.availablity_domain_name
   compartment_id      = var.compartment_ocid
-  backup_policy       = "silver"
+  backup_policy       = var.backup_policy
   size_in_gbs         = 100
   defined_tags        = local.tags_nprd
   # source_details = {

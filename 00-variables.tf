@@ -14,22 +14,6 @@ variable customer_label{
 
 
 locals {
-  compute_shapes = {
-    e2-1  = "VM.Standard.E2.1"
-    e2-2  = "VM.Standard.E2.2"
-    e2-4  = "VM.Standard.E2.4"
-    s2-1  = "VM.Standard2.1"
-    s2-16  = "VM.Standard2.16"
-    s2-2  = "VM.Standard2.2"
-    s2-4  = "VM.Standard2.4"
-    s2-8  = "VM.Standard2.8"
-    
-  }
-
-}
-
-
-locals {
   tags_common = {
     "Account.CompartmentName" = "common_services"
     "Account.StackName"       = var.StackName
@@ -97,6 +81,10 @@ variable "Workload" {
 variable "character_set" {
   default = "WE8MSWIN1252"
 }
+
+variable "db_ncharacter_set" {
+  default = "AL16UTF16"
+}
 variable "db_edition" {
   default = "STANDARD_EDITION"
 }
@@ -109,7 +97,14 @@ variable "data_storage_size_in_gb" {
 variable "db_workload" {
   default = "OLTP"
 }
+variable "db_shape" {
+  default = "VM.Standard2.2"
+}
 
+variable "availablity_domain_name2" {
+  
+  default = "2"
+}
 #########################################################################
 ### Compute Specific
 variable "shape_ocpus" {

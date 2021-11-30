@@ -19,7 +19,6 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-  - availablity_domain_name 
   - show_advanced 
 
 - title: "Compute Optional Configuration"
@@ -30,10 +29,27 @@ variableGroups:
   - Shape
   - shape_ocpus
   - shape_mem
+  - backup_policy
   - availablity_domain_name
   - compartment_ocid
   - instance_shape
   - subnet_ocid
+
+
+- title: "Database Optional Configuration"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - character_set
+  - db_ncharacter_set
+  - db_edition
+  - db_version
+  - data_storage_size_in_gb
+  - db_workload
+  - db_shape
+  - availablity_domain_name2
+
 
 variables:
 
@@ -65,6 +81,10 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
+
+  
+
+  # Compute Configuration
 
   availablity_domain_name:
     type: enum
@@ -106,6 +126,17 @@ variables:
     default: 16
     title: " Shape Memory (GB)"
     description: "Choose number GB for Shape Memory."
+
+  backup_policy:
+    type: enum
+    required: false
+    title: "backup policy"
+    description: "choose backup policy for instances"
+    default: "silver"
+    enum:
+      - "silver"
+      - "bronze"
+      - "gold"
     
   subnet_ocid:
     title: "Subnet OCID"
@@ -123,19 +154,121 @@ variables:
     type: oci:core:ssh:publickey
     required: true
    
+  # DB Configuration
+  NCharacterSet:
+    required: false
+    default: "AL16UTF16"
+    title: "Database NCharacter set"
+    description: "Choose Database NCharacter set for your DBSystem." 
+    enum:
+      - "AL16UTF16"
 
-outputs:
+  CharacterSet:
+    type: enum
+    required: false
+    default: "WE8MSWIN1252"
+    title: "Database Character set"
+    description: "Choose Database Character set for your DBSystem." 
+    enum:
+      - "WE8MSWIN1252"
+      - "AL32UTF8"
 
-  generated_ssh_private_key:
-    title: "Generated SSH Private Key"
-    displayText: "Generated SSH Private Key"
-    type: string
-    visible: true
+  db_Workload:
+    type: enum
+    required: false
+    default: "OLTP"
+    title: "Database workload"
+    description: "Choose Database workload for your DBSystem." 
+    enum:
+      - "OLTP"
+
   
-  FoggyKitchenWebserver1PublicIP:
-    title: "Webserver Public IP"
-    displayText: "Webserver Public IP"
-    type: copyableString
-    visible: true
+  db_Version:
+    type: enum
+    required: false
+    default: "19.12.0.0"
+    title: "Database version"
+    description: "Choose DB version for your DBSystem." 
+    enum:
+      - "11.2.0.4" 
+      - "11.2.0.4.200114" 
+      - "11.2.0.4.200414" 
+      - "11.2.0.4.200714" 
+      - "11.2.0.4.201020" 
+      - "12.1.0.2" 
+      - "12.1.0.2.200114" 
+      - "12.1.0.2.200414" 
+      - "12.1.0.2.200714" 
+      - "12.1.0.2.201020" 
+      - "12.2.0.1" 
+      - "12.2.0.1.200114" 
+      - "12.2.0.1.200414" 
+      - "12.2.0.1.200714" 
+      - "12.2.0.1.201020" 
+      - "18.0.0.0" 
+      - "18.10.0.0" 
+      - "18.11.0.0" 
+      - "18.12.0.0" 
+      - "18.9.0.0" 
+      - "19.0.0.0" 
+      - "19.6.0.0" 
+      - "19.7.0.0" 
+      - "19.8.0.0" 
+      - "19.9.0.0"
+      - "19.12.0.0"
+      - "21.0.0.0" 
+      - "21.1.0.0"
+
+  db_edition:
+    type: enum
+    required: false
+    default: "ENTERPRISE_EDITION"
+    title: "DB Edition"
+    description: "Choose DB Edition for your DBSystem." 
+    enum:
+      - "STANDARD_EDITION"
+      - "ENTERPRISE_EDITION"
+  
+  data_storage_size_in_gb:
+    type: number
+    required: false
+    default: 256
+    minimum: 256
+    maximum: 40960
+    multipleOf: 256
+    title: "Database storage size in GB"
+    description: "Choose database storage size in GB for your DBSystem."
 
 
+  db_shape:
+    type: enum
+    required: false
+    default: "VM.Standard2.1"
+    title: "DB System Shape"
+    description: "Choose the shape for your DBSystem."
+    enum:
+      - "VM.Standard1.2"
+      - "VM.Standard2.1"
+      - "VM.Standard1.2"
+      - "VM.Standard2.2"
+      - "VM.Standard1.4"
+      - "VM.Standard2.4"
+      - "VM.Standard1.8"
+      - "VM.Standard2.8"
+      - "VM.Standard1.16"
+      - "VM.Standard2.16"
+      - "VM.Standard2.24"
+      - "BM.DenseIO2.52"
+      - "BM.DenseIO1.36" 
+
+  availablity_domain_name2:
+    type: enum
+    required: true
+    visibile: true
+    title: "Availability Domain to be chosen"
+    description: "Choose Availability Domain where your application will be deployed."
+    default: "2"
+    enum:
+      - "1"
+      - "2"
+      - "3"
