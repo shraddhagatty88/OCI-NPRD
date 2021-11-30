@@ -182,7 +182,7 @@ variables:
     enum:
       - "AL16UTF16"
 
-  characterset:
+  character_set:
     type: enum
     required: false
     default: "WE8MSWIN1252"
