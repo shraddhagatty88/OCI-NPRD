@@ -51,6 +51,18 @@ variableGroups:
   - db_shape
   - availablity_domain_name2
 
+- title: "Tags"
+  visible: 
+      and:
+        - show_advanced
+  variables:
+  - StackName
+  - StackOwner
+  - ProjectName
+  - BillingOwner
+  - Workload
+  - CostCenter
+
 
 variables:
 
@@ -82,8 +94,6 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
-
-  
 
   # Compute Configuration
 
@@ -192,7 +202,7 @@ variables:
       - "OLTP"
 
   
-  db_Version:
+  db_version:
     type: enum
     required: false
     default: "19.12.0.0"
@@ -281,3 +291,47 @@ variables:
       - "1"
       - "2"
       - "3"
+
+
+#Tags
+  StackName:
+    type: string
+    required: false
+    default: " "
+    title: "Stackname"
+    description: "Tags"
+
+  StackOwner:
+    type: string
+    required: false
+    default: " "
+    title: "Stackowner"
+    description: "Tags"
+
+  ProjectName:
+    type: string
+    required: false
+    default: " "
+    title: "ProjectName"
+    description: "Tags"
+
+  BillingOwner:
+    type: string
+    required: false
+    default: " "
+    title: "BillingOwner"
+    description: "Tags"
+
+  Workload:
+    type: string
+    required: false
+    default: " "
+    title: "WorkLoad"
+    description: "Tags"
+
+  CostCenter:
+    type: string
+    required: false
+    default: " "
+    title: "CostCenter"
+    description: "Tags"
