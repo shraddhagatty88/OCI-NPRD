@@ -19,6 +19,7 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
+  - customer_label
   - show_advanced 
 
 - title: "Compute Optional Configuration"
@@ -35,6 +36,7 @@ variableGroups:
   - compartment_ocid
   - instance_shape
   - subnet_ocid
+  - ssh_key_nonprod
 
 
 - title: "Database Optional Configuration"
@@ -42,6 +44,7 @@ variableGroups:
       and:
         - show_advanced
   variables:
+  - availablity_domain_name2
   - character_set
   - db_ncharacter_set
   - db_edition
@@ -49,7 +52,6 @@ variableGroups:
   - data_storage_size_in_gb
   - db_workload
   - db_shape
-  - availablity_domain_name2
 
 - title: "Tags"
   visible: 
@@ -94,6 +96,13 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
+  
+  customer_label:
+    title: "customer label"
+    description: "Label used as a prefix for naming resources"
+    type: string
+    required: true
+    visibile: false
 
   # Compute Configuration
 
