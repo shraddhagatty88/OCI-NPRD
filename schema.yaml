@@ -30,6 +30,7 @@ variableGroups:
   - shape_ocpus
   - shape_mem
   - backup_policy
+  - boot_volume_size_in_gbs
   - availablity_domain_name
   - compartment_ocid
   - instance_shape
@@ -152,9 +153,18 @@ variables:
     # renders variable as an SSH key control
     type: oci:core:ssh:publickey
     required: true
+  
+  boot_volume_size_in_gbs:
+    type: number
+    required: false
+    multipleOf: 1
+    default: 100
+    title: " Shape Memory (GB)"
+    description: "Choose number GB for Shape Memory."
+
    
   # DB Configuration
-  NCharacterSet:
+  db_ncharacter_set:
     required: false
     default: "AL16UTF16"
     title: "Database NCharacter set"
@@ -162,7 +172,7 @@ variables:
     enum:
       - "AL16UTF16"
 
-  CharacterSet:
+  characterset:
     type: enum
     required: false
     default: "WE8MSWIN1252"
@@ -172,7 +182,7 @@ variables:
       - "WE8MSWIN1252"
       - "AL32UTF8"
 
-  db_Workload:
+  db_workload:
     type: enum
     required: false
     default: "OLTP"

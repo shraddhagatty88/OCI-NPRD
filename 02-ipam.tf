@@ -2,6 +2,7 @@
 # IP Address Management:
 ############################################################################
 # Internal:
+/*
 variable "instances_ip" {
   
   type = map(string)
@@ -18,3 +19,4 @@ variable "instances_ip" {
   
   }
 }
+*/
