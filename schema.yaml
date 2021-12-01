@@ -105,7 +105,6 @@ variables:
     type: oci:identity:compartment:id
     required: true
     visibile: true
-
   
   customer_label:
     title: "customer label"
@@ -128,7 +127,6 @@ variables:
 
 
   # Compute Configuration
-
   availablity_domain_name:
     type: enum
     required: true
