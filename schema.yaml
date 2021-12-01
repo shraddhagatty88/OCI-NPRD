@@ -116,10 +116,11 @@ variables:
   nsg:
     title: "Network security groups"
     description: "Network security groups for the instance"
-    type: oci:core:nsg:id
+    type:
+      - oci:core:nsg:id
+      - boolean 
     required: true
     visible: true
-    allowMultiple: true
     dependsOn: 
       compartmentId: ${subnet_compartment}
 
