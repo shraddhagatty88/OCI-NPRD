@@ -132,7 +132,9 @@ variable instance_shape {
 variable "compartment_ocid" {
   
 }
-
+variable "computeip" {
+  
+}
 variable "availablity_domain_name" {
   
   default = "3"

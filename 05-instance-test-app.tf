@@ -7,7 +7,7 @@ module "instance_test_app" {
   tenancy_id          = var.tenancy_ocid
   display_name        = "${var.customer_label}_test_app"
   vnic_hostname_label = "${var.customer_label}-test-app"
-  shape               = var.instance_shapes
+  shape               = var.instance_shape
   shape_ocpus         = var.shape_ocpus
   shape_mem           = var.shape_mem
   availability_domain = var.availablity_domain_name
@@ -23,7 +23,7 @@ module "instance_test_app" {
   boot_volume_size_in_gbs = 100
   assign_public_ip    = false
   boot_backup_policy  = "silver"
-  private_ip          = var.instance_shape
+  private_ip          = var.computeip
   defined_tags        = local.tags_nprd
   }
 

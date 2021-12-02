@@ -28,7 +28,7 @@ variableGroups:
       and:
         - show_advanced
   variables:
-  - Shape
+  - computeip
   - shape_ocpus
   - shape_mem
   - backup_policy
@@ -114,18 +114,40 @@ variables:
     visibile: false
   
   nsg:
-    title: "Network security groups"
-    description: "Network security groups for the instance"
-    type:
-      - oci:core:nsg:id
-      - boolean 
-    required: true
-    visible: true
-    dependsOn: 
+    - title: "Network security groups"
+      description: "Network security groups for the instance"
+      type: oci:core:nsg:id
+      required: false
+      visible: true
+      dependsOn: 
+      compartmentId: ${subnet_compartment}
+
+    - title: "Network security groups"
+      description: "Network security groups for the instance"
+      type: oci:core:nsg:id
+      required: true
+      visible: true
+      dependsOn: 
+      compartmentId: ${subnet_compartment}
+    
+    - title: "Network security groups"
+      description: "Network security groups for the instance"
+      type: oci:core:nsg:id
+      required: true
+      visible: true
+      dependsOn: 
       compartmentId: ${subnet_compartment}
 
 
   # Compute Configuration
+  computeip:
+    type: string
+    required: false
+    default: "10.0.0.0/16"
+    pattern: "^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]).(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\\/(3[0-2]|[1-2]?[0-9])$"
+    title: "Compute Private IP"
+    description: "Choose Compute Private IP"
+
   availablity_domain_name:
     type: enum
     required: true
