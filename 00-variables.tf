@@ -149,6 +149,9 @@ variable "ssh_key_nonprod" {
   
 }
 
-variable "nsg" {
+variable "nsg1" {
+ 
+}
+variable "nsg2" {
   
 }

@@ -113,23 +113,23 @@ variables:
     required: true
     visibile: false
   
-  nsg:
-   -  title: "Network security groups"
-      description: "Network security groups for the instance"
-      type: oci:core:nsg:id
-      required: false
-      visible: true
-      dependsOn: 
-        compartmentId: ${subnet_compartment}
-        
-   -  title: "Network security groups"
-      description: "Network security groups for the instance"
-      type: oci:core:nsg:id
-      required: false
-      visible: true
-      dependsOn: 
-        compartmentId: ${subnet_compartment}
+  nsg1:
+    title: "Network security groups"
+    description: "Network security groups for the instance"
+    type: oci:core:nsg:id
+    required: false
+    visible: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
 
+  nsg2: 
+    title: "Network security groups"
+    description: "Network security groups for the instance"
+    type: oci:core:nsg:id
+    required: false
+    visible: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
 
   # Compute Configuration
   computeip:
