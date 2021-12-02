@@ -37,6 +37,8 @@ variableGroups:
   - compartment_ocid
   - instance_shape
   - subnet_ocid
+  - instance_os
+  - linux_os_version
   - ssh_key_nonprod
   - nsg
 
@@ -172,6 +174,26 @@ variables:
     default: 16
     title: " Shape Memory (GB)"
     description: "Choose number GB for Shape Memory."
+
+  instance_os:
+    type: enum
+    required: false
+    visible: true
+    title: "Instance OS"
+    description: "Choose Operating System that determines the operating system for Webserver host."
+    default: "Oracle Linux"
+    enum:
+      - "Oracle Linux"
+
+  linux_os_version:
+    type: enum
+    required: false
+    visible: true
+    title: "Instance OS version"
+    description: "Choose Operating System version that determines the operating system version for Webserver host."
+    default: "7.9"
+    enum:
+      - "7.9"  
 
   backup_policy:
     type: enum

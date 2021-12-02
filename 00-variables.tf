@@ -152,3 +152,11 @@ variable "ssh_key_nonprod" {
 variable "nsg" {
  
 }
+
+variable "instance_os" {
+  
+}
+
+variable "linux_os_version" {
+  
+}
