@@ -20,6 +20,8 @@ module "instance-test-db" {
   hostname                       = "${var.customer_label}testdb"
   display_name                   = "${var.customer_label}testdb"
   defined_tags                   = local.tags_nprd
-  network_sec_groups             = var.nsg
+  network_sec_groups             = [data.terraform_remote_state.common_services.outputs.security_group_nonprod_db_id
+                        ,data.terraform_remote_state.common_services.outputs.security_group_nonprod_common_id
+                                 ]
 }  
 
