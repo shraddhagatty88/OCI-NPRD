@@ -120,7 +120,7 @@ variables:
     required: false
     visible: true
     dependsOn: 
-    compartmentId: ${subnet_compartment}
+      compartmentId: ${subnet_compartment}
 
 
   # Compute Configuration
