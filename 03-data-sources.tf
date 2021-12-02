@@ -29,6 +29,7 @@ data "oci_core_services" "core_services" {
   }
 }
 
+/*
 data "oci_core_images" "custom_image_v1-oel7-golden" {
     compartment_id = data.terraform_remote_state.common_services.outputs.common_services_compartment_id
     display_name   = "V1-OEL7-GoldenImage-100GB-20200430"
@@ -41,3 +42,4 @@ data "oci_core_network_security_group" "test_network_security_group" {
 
   compartment_id = var.subnet_compartment
 }
+*/
