@@ -20,7 +20,7 @@ module "instance_test_app" {
   boot_volume_size_in_gbs = 100
   assign_public_ip    = false
   boot_backup_policy  = "silver"
-  private_ip          = var.computeip
+  #private_ip          = var.computeip
   defined_tags        = local.tags_nprd
   }
 
