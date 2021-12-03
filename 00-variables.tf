@@ -13,12 +13,12 @@ variable customer_label{
 variable "compartment_ocid" {
   
 }
+variable "subnet_compartment" {} 
 
 #########################################################################
 
 ### Compute Specific
 
-variable "subnet_compartment1" {} 
 variable "subnet_ocid1" {}
 
 variable "availablity_domain_name" {
@@ -49,7 +49,6 @@ variable "linux_os_version" {}
 ############################################################################
 
 ### DB Specific 
-variable "subnet_compartment2" {} 
 variable "subnet_ocid2" {}
 variable "availablity_domain_name2" {
   default = "2"

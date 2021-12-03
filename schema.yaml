@@ -20,6 +20,7 @@ variableGroups:
   variables:
   - compartment_ocid
   - customer_label
+  - subnet_compartment
   - show_advanced 
 
 - title: "Compute  Configuration"
@@ -27,9 +28,8 @@ variableGroups:
       and:
         - show_advanced
   variables:
-  - availablity_domain_name
-  - subnet_compartment1
   - subnet_ocid1
+  - availablity_domain_name
   - computeip
   - shape_ocpus
   - shape_mem
@@ -47,7 +47,6 @@ variableGroups:
       and:
         - show_advanced
   variables:
-  - subnet_compartment2
   - subnet_ocid2
   - availablity_domain_name2
   - character_set
@@ -103,6 +102,13 @@ variables:
     required: true
     visibile: true
   
+  subnet_compartment:
+    title: "Subnet Compartment OCID"
+    description: "Choose Comparment where Subnet is located"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+  
   customer_label:
     title: "customer label"
     description: "Label used as a prefix for naming resources"
@@ -130,13 +136,6 @@ variables:
     visibile: true
     dependsOn: 
       compartmentId: ${subnet_compartment}
-
-  subnet_compartment1:
-    title: "Subnet Compartment OCID"
-    description: "Choose Comparment where Subnet is located"
-    type: oci:identity:compartment:id
-    required: true
-    visibile: true
 
   computeip:
     type: string
@@ -245,14 +244,6 @@ variables:
     dependsOn: 
       compartmentId: ${subnet_compartment}
 
-  subnet_compartment2:
-    title: "Subnet Compartment OCID"
-    description: "Choose Comparment where Subnet is located"
-    type: oci:identity:compartment:id
-    required: true
-    visibile: true
-
-
   db_ncharacter_set:
     required: false
     default: "AL16UTF16"
@@ -280,7 +271,6 @@ variables:
     enum:
       - "OLTP"
 
-  
   db_version:
     type: enum
     required: false
@@ -336,7 +326,6 @@ variables:
     multipleOf: 256
     title: "Database storage size in GB"
     description: "Choose database storage size in GB for your DBSystem."
-
 
   db_shape:
     type: enum
