@@ -19,35 +19,36 @@ variableGroups:
   visible: true  
   variables:
   - compartment_ocid
-  - subnet_compartment
   - customer_label
   - show_advanced 
 
-- title: "Compute Optional Configuration"
+- title: "Compute  Configuration"
   visible: 
       and:
         - show_advanced
   variables:
+  - availablity_domain_name
+  - subnet_compartment1
+  - subnet_ocid1
   - computeip
   - shape_ocpus
   - shape_mem
   - backup_policy
   - boot_volume_size_in_gbs
-  - availablity_domain_name
-  - compartment_ocid
   - instance_shape
-  - subnet_ocid
   - instance_os
   - linux_os_version
   - ssh_key_nonprod
   - nsg
 
 
-- title: "Database Optional Configuration"
+- title: "Database Configuration"
   visible: 
       and:
         - show_advanced
   variables:
+  - subnet_compartment2
+  - subnet_ocid2
   - availablity_domain_name2
   - character_set
   - db_ncharacter_set
@@ -56,6 +57,7 @@ variableGroups:
   - data_storage_size_in_gb
   - db_workload
   - db_shape
+  - ssh_key_db
 
 - title: "Tags"
   visible: 
@@ -69,7 +71,6 @@ variableGroups:
   - Workload
   - CostCenter
 
-
 variables:
 
   show_advanced:
@@ -80,6 +81,7 @@ variables:
     default: false
 
   # General Configuration
+
   tenancy_ocid:
     title: "Tenancy ID"
     description: "The Oracle Cloud Identifier (OCID) for your tenancy"
@@ -97,13 +99,6 @@ variables:
   compartment_ocid:
     title: "Compartment OCID"
     description: "Choose Comparment where you deploy your Webserver"
-    type: oci:identity:compartment:id
-    required: true
-    visibile: true
-  
-  subnet_compartment:
-    title: "Subnet Compartment OCID"
-    description: "Choose Comparment where Subnet is located"
     type: oci:identity:compartment:id
     required: true
     visibile: true
@@ -126,6 +121,23 @@ variables:
 
 
   # Compute Configuration
+  
+  subnet_ocid1:
+    title: "Subnet OCID"
+    description: "Choose subnet where you deploy your instance"
+    type: oci:core:subnet:id
+    required: true
+    visibile: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
+
+  subnet_compartment1:
+    title: "Subnet Compartment OCID"
+    description: "Choose Comparment where Subnet is located"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
   computeip:
     type: string
     required: false
@@ -205,22 +217,6 @@ variables:
       - "silver"
       - "bronze"
       - "gold"
-    
-  subnet_ocid:
-    title: "Subnet OCID"
-    description: "Choose subnet where you deploy your instance"
-    type: oci:core:subnet:id
-    required: true
-    visibile: true
-    dependsOn: 
-      compartmentId: ${subnet_compartment}
-    
-  ssh_key_nonprod:
-    title: SSH Public Key
-    description: The public SSH key for the key-pair that you want to use, if you wish to login to the instances over SSH
-    # renders variable as an SSH key control
-    type: oci:core:ssh:publickey
-    required: true
   
   boot_volume_size_in_gbs:
     type: number
@@ -230,8 +226,33 @@ variables:
     title: " Shape Memory (GB)"
     description: "Choose number GB for Shape Memory."
 
+  ssh_key_nonprod:
+    title: SSH Public Key
+    description: The public SSH key for the key-pair that you want to use, if you wish to login to the instances over SSH
+    # renders variable as an SSH key control
+    type: oci:core:ssh:publickey
+    required: true
+
    
   # DB Configuration
+
+  subnet_ocid2:
+    title: "Subnet OCID"
+    description: "Choose subnet where you deploy your instance"
+    type: oci:core:subnet:id
+    required: true
+    visibile: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
+
+  subnet_compartment2:
+    title: "Subnet Compartment OCID"
+    description: "Choose Comparment where Subnet is located"
+    type: oci:identity:compartment:id
+    required: true
+    visibile: true
+
+
   db_ncharacter_set:
     required: false
     default: "AL16UTF16"
@@ -349,6 +370,14 @@ variables:
       - "1"
       - "2"
       - "3"
+
+  ssh_key_db:
+    title: SSH Public Key
+    description: The public SSH key for the key-pair that you want to use, if you wish to login to the instances over SSH
+    # renders variable as an SSH key control
+    type: oci:core:ssh:publickey
+    required: true
+
 
 
 #Tags
