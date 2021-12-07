@@ -42,7 +42,6 @@ variable instance_shape {
 variable "computeip" {}
 variable "ssh_key_nonprod" {}
 variable "nsg" { 
-  type        = list(string)
   default     = []
   }
 variable "instance_os" {}
