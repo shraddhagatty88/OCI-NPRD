@@ -39,7 +39,9 @@ variableGroups:
   - instance_os
   - linux_os_version
   - ssh_key_nonprod
-  - nsg
+  - nsg1
+  - nsg2
+  - nsg3
 
 
 - title: "Database Configuration"
@@ -116,7 +118,25 @@ variables:
     required: true
     visibile: false
   
-  nsg:
+  nsg1:
+    title: "Network security groups"
+    description: "Network security groups for the instance"
+    type: oci:core:nsg:id
+    required: false
+    visible: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
+
+  nsg2:
+    title: "Network security groups"
+    description: "Network security groups for the instance"
+    type: oci:core:nsg:id
+    required: false
+    visible: true
+    dependsOn: 
+      compartmentId: ${subnet_compartment}
+
+  nsg3:
     title: "Network security groups"
     description: "Network security groups for the instance"
     type: oci:core:nsg:id
