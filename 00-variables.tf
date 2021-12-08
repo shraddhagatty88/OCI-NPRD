@@ -44,9 +44,15 @@ variable "ssh_key_nonprod" {}
 variable "instance_os" {}
 variable "linux_os_version" {}
 
-variable "nsg1" {}
-variable "nsg2" {}
-variable "nsg3" {}
+variable "nsg1" {
+default = []
+}
+variable "nsg2" {
+default = []
+}
+variable "nsg3" {
+default = []
+}
 locals {
 
 nsg = flatten( [ var.nsg1,var.nsg2, var.nsg3] )
