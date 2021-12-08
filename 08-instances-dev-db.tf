@@ -20,5 +20,5 @@ module "instance-dev-db" {
   hostname                       = "${var.customer_label}devdb"
   display_name                   = "${var.customer_label}devdb"
   defined_tags                   = local.tags_nprd
-  network_sec_groups             = [ var.nsg ]
+  network_sec_groups             = local.nsg
 }  

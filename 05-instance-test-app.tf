@@ -14,7 +14,7 @@ module "instance_test_app" {
   fault_domain        = 1
   compartment_id      = var.compartment_ocid
   subnet_id           = var.subnet_ocid1
-  network_sec_groups  = [ var.nsg ]
+  network_sec_groups  = local.nsg
   ssh_authorized_keys = var.ssh_key_nonprod
   source_id           = data.oci_core_images.OSImage.images[0].id
   boot_volume_size_in_gbs = 100

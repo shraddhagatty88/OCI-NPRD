@@ -119,9 +119,7 @@ variables:
   nsg:
     title: "Network security groups"
     description: "Network security groups for the instance"
-    type: array
-    items:
-      type: oci:core:nsg:id
+    type: oci:core:nsg:id
     required: false
     visible: true
     dependsOn: 

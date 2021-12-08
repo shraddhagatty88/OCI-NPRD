@@ -20,6 +20,6 @@ module "instance-test-db" {
   hostname                       = "${var.customer_label}testdb"
   display_name                   = "${var.customer_label}testdb"
   defined_tags                   = local.tags_nprd
-  network_sec_groups             = [ var.nsg ]
+  network_sec_groups             = local.nsg
 }  
 
